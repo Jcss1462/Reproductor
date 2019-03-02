@@ -25,6 +25,12 @@ html, body {
   overflow-y: hidden;
 }
 
+.duracion{
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
 .player {
   position: relative;
 }
@@ -44,15 +50,26 @@ html, body {
 .player .info .name {
   display: block;
 }
+
+.duracion,.actual{
+  width: 20px;
+  margin-bottom: -17px;
+  margin-top: 5px;
+  font-size: 10px;
+  display:flex
+}
+.actual{
+margin-left: 137px;
+}
 .player .info .artist {
   color: #222;
   font-size: 16px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 .player .info .name {
   color: #999;
   font-size: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 .player .info .progress-bar {
   background-color: #ddd;
@@ -60,6 +77,7 @@ html, body {
   width: 100%;
   position: relative;
   cursor: pointer;
+  margin-bottom: 3px;
 }
 .player .info .progress-bar .bar {
   position: absolute;

@@ -78,6 +78,13 @@ class musicPlayer {
 		name.classList.add("name");
 		name.innerHTML = nameContent;
 
+		let duracion = document.createElement("div");
+		duracion.classList.add("duracion");
+	
+		let actual = document.createElement("div");
+		actual.classList.add("actual");
+		
+
 		let progressBar = document.createElement("div");
 		progressBar.classList.add("progress-bar");
 
@@ -87,6 +94,8 @@ class musicPlayer {
 		progressBar.appendChild(bar);
 		info.appendChild(artist);
 		info.appendChild(name);
+		info.appendChild(duracion);
+		info.appendChild(actual);
 		info.appendChild(progressBar);
 		player.appendChild(info);
 
@@ -141,5 +150,11 @@ class musicPlayer {
 		let p = (this.player.currentTime / this.player.duration) * 100;
 		let bar = this.progressBar.querySelector(".bar");
 		bar.style.width = `${p}%`
+
+		let pru=this.infoBar.querySelector(".duracion");
+		pru.innerHTML=(this.player.duration/60).toFixed(2);
+		
+		let act=this.infoBar.querySelector(".actual");
+		act.innerHTML=(this.player.currentTime/60).toFixed(2);
 	}
 }

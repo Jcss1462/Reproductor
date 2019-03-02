@@ -15,6 +15,6 @@ function setStorage(username){
 window.onload = () => {
     document.getElementById("username").innerHTML = username;
 
-    let newMusicplayer = new musicPlayer("Virtualscape","Concepts","assets/songs/virtualscape.mp3");
+    let newMusicplayer = new musicPlayer("Sofia Carson","Love is the name","assets/songs/cancion.mp3");
     document.body.appendChild(newMusicplayer.DOMElement);
 }
