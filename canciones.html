@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canciones</title>
+   <!-- <link rel="stylesheet" href="css/login.css">-->
+   <link rel="stylesheet" href="css/login.css">
+   
+</head>
+
+<body>
+    <div class="form-structor">
+        <div class="signup">
+            <h2 class="form-title" id="canciones">Canciones</h2>
+            <form id="signUpForm" onsubmit="doSignUp(event)">
+                <div class="form-holder">
+                    <input name="title" type="text" class="input" placeholder="Titulo" />
+                    <input name="duration" type="text" class="input" placeholder="Duracion" />
+                    <input name="format" type="text" class="input" placeholder="Formato" />
+                    <input name="file" type="text" class="input" placeholder="Archivo" />
+                </div>
+                <button class="submit-btn">Añadir</button>
+            </form>
+        </div>
+    </div>
+    <script src="src/canciones.js"></script>
+    <button onclick="location.href='http://localhost/reproductor/MusicPlayerServer/songs.php?ejecute=todas'">Ir a todas la canciones</button>
+</body>
+
+</html>

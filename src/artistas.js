@@ -1,7 +1,8 @@
 //UI interaction
-const loginBtn = document.getElementById('login');
-const signupBtn = document.getElementById('signup');
+const loginBtn = document.getElementById('artistas');
+
 console.log(loginBtn);
+//const signupBtn = document.getElementById('signup');
 
 loginBtn.addEventListener('click', (e) => {
 	let parent = e.target.parentNode.parentNode;
@@ -15,17 +16,6 @@ loginBtn.addEventListener('click', (e) => {
 	});
 });
 
-signupBtn.addEventListener('click', (e) => {
-	let parent = e.target.parentNode;
-	Array.from(e.target.parentNode.classList).find((element) => {
-		if (element !== "slide-up") {
-			parent.classList.add('slide-up')
-		} else {
-			loginBtn.parentNode.parentNode.classList.add('slide-up')
-			parent.classList.remove('slide-up')
-		}
-	});
-});
 
 //Session handling
 //https://www.w3schools.com/html/html5_webstorage.asp
@@ -33,26 +23,9 @@ signupBtn.addEventListener('click', (e) => {
 
 // Requests
 
-var servidor = `http://localhost/reproductor/MusicPlayerServer/users.php?ejecute=`
+var servidor = `http://localhost/reproductor/MusicPlayerServer/artist.php?ejecute=`
 
-function doLogin(e) {
-	e.preventDefault();
-	
-	let fetch = postRequest("#loginForm", `${servidor}login`);
 
-	fetch.then(function (response) {
-		
-		return response.json();
-	})
-		.then(function (response) {
-			if (response.login) {
-				alert(`Bienvenido`)
-				redirectPlayer("#loginForm");
-			} else {
-				alert("Nombre de usuario o contraseña inccorecta");
-			}
-		});
-}
 
 function doSignUp(e) {
 
@@ -61,31 +34,37 @@ function doSignUp(e) {
 
 	console.log("asdlkasldjasjl");
 
-	let fetch = postRequest("#signUpForm", `${servidor}signup`);
-	console.log(fetch);
-
+	let fetch = postRequest("#signUpForm", `${servidor}submit`);
+	
 	fetch.then(function (response) {
 		return response.json();
 	})
 		.then(function (response) {
 			if (response) {
-				alert(`Bienvenido`)
-				redirectPlayer("#signUpForm");
+				
+				alert(`Añadido exitosamente`)	
+				//redirectPlayer("#signUpForm");
 			} else {
 				alert("El sistema de registro está petaqueado");
 			}
 		});
+
+		
 }
 
 function postRequest(formSelector, url) {
 
 	let form = document.querySelector(formSelector);
+	
 	let inputs = form.querySelectorAll("input");
+	console.log(form.querySelectorAll("input"));
 	let data = {};
 
 	for (let i = 0; i < inputs.length; i++) {
 		data[inputs[i].name] = inputs[i].value;
 	}
+
+	console.log(data);
 
 	var params = new FormData();
 	for (const key in data) {
@@ -100,7 +79,7 @@ function postRequest(formSelector, url) {
 		},
 		body: params
 	};
-
+	
 	return fetch(url, config);
 
 }
