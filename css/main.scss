@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 html, body {
+  width: 100vw;
+  height: 100vh;
   position: relative;
   min-height: 100vh;
-  background-color: #FFF0F5;
+  background-color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +12,18 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: hidden;
+}
+
+.menu{
+
+  color: white;
+  width: 2.2rem;
+  height: 2.27rem;
+  background: rgb(0, 255, 136);
+  border-radius: 0.5rem;
+  position: relative;
+  text-align: center;
+  transition: left 0.7s;
 }
 
 .musicPlayer {
@@ -21,7 +35,7 @@ html, body {
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: hidden;
+  
 }
 
 #botones {
@@ -267,7 +281,7 @@ html, body {
   position: absolute;
   left: -70px;
   top: -10px;
-  background: #FFF0F5;
+  background: rgb(0, 0, 0);
 }
 
 #prevSong {
