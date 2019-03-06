@@ -17,17 +17,32 @@
             <h2 class="form-title" id="canciones">Canciones</h2>
             <form id="signUpForm" onsubmit="doSignUp(event)">
                 <div class="form-holder">
-                    <input name="title" type="text" class="input" placeholder="Titulo" />
-                    <input name="duration" type="text" class="input" placeholder="Duracion" />
-                    <input name="format" type="text" class="input" placeholder="Formato" />
-                    <input name="file" type="text" class="input" placeholder="Archivo" />
+                    <input id="title" name="title" type="text" class="input" placeholder="Titulo" required />
+                    <input id="duration" name="duration" type="text" class="input" placeholder="Duracion" required/>
+                    <input id="format" name="format" type="text" class="input" placeholder="Formato" required/>
+                    <input id="file" name="file" type="text" class="input" placeholder="Archivo" required/>
                 </div>
-                <button class="submit-btn">Añadir</button>
+                <button type="submit" class="submit-btn">Añadir</button>
+                
+            </form>
+
+            <h2 class="form-title" id="boton"></h2>
+            <!-- <form id="botomForm" onsubmit="listaTotal(event)"> -->
+            <form id="botomForm"> 
+                <select name="listaCanciones" id="listaCanciones"></select>   
+                <button class="submit-btn" id="todas" onclick="listaTotal(event)">Todas</button>
             </form>
         </div>
+
+      
+        
     </div>
+
+   
+    
+
     <script src="src/canciones.js"></script>
-    <button onclick="location.href='http://localhost/reproductor/MusicPlayerServer/songs.php?ejecute=todas'">Ir a todas la canciones</button>
+   <!-- <button onclick="location.href='http://localhost/reproductor/MusicPlayerServer/songs.php?ejecute=todas'">Ir a todas la canciones</button>-->
 </body>
 
 </html>

@@ -1,6 +1,9 @@
 //UI interaction
 const loginBtn = document.getElementById('canciones');
 
+var fielEmpty="";
+//const todas=document.getElementsById('boton');
+
 console.log(loginBtn);
 //const signupBtn = document.getElementById('signup');
 
@@ -23,7 +26,7 @@ loginBtn.addEventListener('click', (e) => {
 
 // Requests
 
-var servidor = `http://localhost/reproductor/MusicPlayerServer/songs.php?ejecute=`
+var servidor = `http://localhost/reproductor/MusicPlayerServer/users.php?ejecute=`
 
 
 
@@ -34,7 +37,7 @@ function doSignUp(e) {
 
 	console.log("asdlkasldjasjl");
 
-	let fetch = postRequest("#signUpForm", `${servidor}submit`);
+	let fetch = postRequest("#signUpForm", `${servidor}subsong`);
 	
 	fetch.then(function (response) {
 		return response.json();
@@ -42,15 +45,62 @@ function doSignUp(e) {
 		.then(function (response) {
 			if (response) {
 				
-				alert(`Añadido exitosamente`)	
+				//alert('Añadido exitosamente');
+				document.getElementById("signUpForm").submit();
+				location.href='http://localhost/reproductor/MusicPlayer/canciones.html';
+				//clearField();
+
 				//redirectPlayer("#signUpForm");
 			} else {
 				alert("El sistema de registro está petaqueado");
 			}
 		});
-
-		
 }
+
+
+function clearField(){   // Temporal
+	document.getElementById('title').value    = fielEmpty;
+	document.getElementById('duration').value = fielEmpty;
+	document.getElementById('format').value   = fielEmpty;
+	document.getElementById('file').value     = fielEmpty;
+}
+
+function listaTotal(e){
+	
+	
+	e.preventDefault(); // local 
+
+
+	var config={
+		method: 'get',
+		mode: 'cors'
+	};
+
+	fetch(`${servidor}selectSongs`, config)
+	.then(function (response) {
+		return response.json();
+	})
+	//el return me menda un arreglo de canciones que luego paso como parametro
+	.then(function (canciones) {
+		let select = document.querySelector("#listaCanciones");
+
+		if(select.length!=canciones.length){
+		//para cada elemto en el arreglo
+		canciones.forEach(usuario => {
+			let option = document.createElement("option");
+			option.value = usuario.id;
+			option.innerHTML = usuario.title;
+			select.appendChild(option);
+		});
+		}
+	});
+
+	console.log(48);	// Test
+
+	
+}
+
+
 
 function postRequest(formSelector, url) {
 
@@ -91,4 +141,5 @@ function redirectPlayer(formSelector) {
 	sessionStorage.setItem("username", username.value);
 	window.location = "./index.html";
 }
+
 

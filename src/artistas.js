@@ -23,7 +23,7 @@ loginBtn.addEventListener('click', (e) => {
 
 // Requests
 
-var servidor = `http://localhost/reproductor/MusicPlayerServer/artist.php?ejecute=`
+var servidor = `http://localhost/reproductor/MusicPlayerServer/users.php?ejecute=`
 
 
 
@@ -34,7 +34,7 @@ function doSignUp(e) {
 
 	console.log("asdlkasldjasjl");
 
-	let fetch = postRequest("#signUpForm", `${servidor}submit`);
+	let fetch = postRequest("#signUpForm", `${servidor}subartist`);
 	
 	fetch.then(function (response) {
 		return response.json();
