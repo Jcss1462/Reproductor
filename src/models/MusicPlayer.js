@@ -32,12 +32,12 @@ class musicPlayer {
 
 		let cuerpo=document.createElement("div");
 		cuerpo.classList.add("cuerpo");
-		/////////////////////////////////////////
+		///////////////////////////////////////// Barra izquierda
 
 		let izquierda=document.createElement("div");
 		izquierda.classList.add("izquierda");
 
-		//////////////////////////////////////////
+		//////////////////////////////////////////Barra cntral
 
 		let centro = document.createElement("div");
 		centro.classList.add("centro");
@@ -67,7 +67,7 @@ class musicPlayer {
 
 
 
-		////////////////////////////////
+		////////////////////////////////Barra derecha
 
 		let derecha=document.createElement("div");
 		derecha.classList.add("derecha");
