@@ -29,9 +29,25 @@ class musicPlayer {
 	}
 
 	initDOMElement(songName,artistName){
+
+		let cuerpo=document.createElement("div");
+		cuerpo.classList.add("cuerpo");
+		/////////////////////////////////////////
+
+		let izquierda=document.createElement("div");
+		izquierda.classList.add("izquierda");
+
+		//////////////////////////////////////////
+
+		let centro = document.createElement("div");
+		centro.classList.add("centro");
+
+
+
+
 		let container = document.createElement("div");
 		container.classList.add("musicPlayer");
-		
+
 		let prevSong = this._prevAndNextDomElement(true,"assets/covers/virtualscape.jpg");
 		container.appendChild(prevSong);
 
@@ -41,7 +57,27 @@ class musicPlayer {
 		let nextSong = this._prevAndNextDomElement(false,"assets/covers/virtualscape.jpg");
 		container.appendChild(nextSong);
 
-		this.DOMElement = container;
+		centro.appendChild(container);
+
+
+
+		let mio = document.createElement("div");
+		mio.classList.add("mio");
+		centro.appendChild(mio);
+
+
+
+		////////////////////////////////
+
+		let derecha=document.createElement("div");
+		derecha.classList.add("derecha");
+
+		///////////////////////////////
+		cuerpo.appendChild(izquierda);
+		cuerpo.appendChild(centro);
+		cuerpo.appendChild(derecha);
+
+		this.DOMElement = cuerpo;
 	}
 
 	_prevAndNextDomElement(isPrev, src){
