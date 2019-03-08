@@ -37,7 +37,10 @@ class musicPlayer {
 		let izquierda=document.createElement("div");
 		izquierda.classList.add("izquierda");
 
-		//////////////////////////////////////////Barra cntral
+		let izqinfo=this._barraIzquierda();
+		izquierda.appendChild(izqinfo);
+
+		//////////////////////////////////////////Barra central
 
 		let centro = document.createElement("div");
 		centro.classList.add("centro");
@@ -80,6 +83,21 @@ class musicPlayer {
 		this.DOMElement = cuerpo;
 	}
 
+	_barraIzquierda(){
+
+		let p1=document.createElement("div");
+		p1.classList.add("p1")
+
+
+		let username= document.createElement("div");
+		username.id="username"
+		
+
+		p1.appendChild(username);
+
+		return p1;
+
+	}
 	_prevAndNextDomElement(isPrev, src){
 		let element = document.createElement("div");
 		element.id = (isPrev) ? "prevSong" : "nextSong";
