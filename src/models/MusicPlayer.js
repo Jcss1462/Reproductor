@@ -4,6 +4,7 @@ class musicPlayer {
 		this.initDOMElement(songName,artistName);
 
 		this.interruptor=this.DOMElement.querySelector("#opcion1");
+		this.interruptor2=this.DOMElement.querySelector("#opcion2");
 		
 
 		this.controlPanel = this.DOMElement.querySelector("#control-panel");
@@ -19,23 +20,43 @@ class musicPlayer {
 		this.playBtn = this.DOMElement.querySelector("#play");
 		this.playBtn.onclick = () => { this.play() };
 
-		//////////////////////////////////////////////////
+		//////////////////////////////////////////////////opciones
 
 		this.misC = this.DOMElement.querySelector("#misCan");
 		this.misC.onclick = (e) => {
-			this.infoUsuario(servidor);
+			this.canciones();
 		}
+
+		this.misp=this.DOMElement.querySelector("#misPlay");
+		this.misp.onclick = (a) => {
+			this.playlis();
+		}
+
+		this.listacanciones=this.DOMElement.querySelector("#miscanciones");
+		this.listacanciones.onclick = (a) => {
+			console.log(servidor);
+			this.miscanciones(servidor);
+		}
+		//////////////////////////////////////////////////////
 
 
 		this.player.ontimeupdate = () => { this.updateData() };
 
 	}
+
+	
+	playlis(){
+		this.interruptor2.classList.toggle('active');
+	}
 	
 
-	infoUsuario(servidor){
+	canciones(){
 
 		this.interruptor.classList.toggle('active');
+	
+	}
 
+	miscanciones(servidor){
 		var user = {
 			id: null,
 			email: null,
@@ -72,10 +93,8 @@ class musicPlayer {
 	
             })
         });
-		
 		// Test
 	}
-
 	
 	
 	set DOMElement(value){
@@ -173,24 +192,56 @@ class musicPlayer {
 		opcion1.classList.add("menu");
 		opcion1.id="opcion1";
 
-		let mias=document.createElement("div");
-		mias.innerHTML="Mis canciones"
-		mias.classList.add("btn");
-		mias.id="mias";
+		let miasc=document.createElement("div");
+		miasc.innerHTML="Mis canciones"
+		miasc.classList.add("btn");
+		miasc.id="miscanciones";
 
-		let añadir=document.createElement("div");
-		añadir.innerHTML="Añadir canciones"
-		añadir.classList.add("btn");
-		añadir.id="añadir";
+		let añadirc=document.createElement("div");
+		añadirc.innerHTML="Añadir canciones"
+		añadirc.classList.add("btn");
+		añadirc.id="añadirc";
 
-		let eliminar=document.createElement("div");
-		eliminar.innerHTML="Eliminar canciones"
-		eliminar.classList.add("btn");
-		eliminar.id="eliminar";
+		let eliminarc=document.createElement("div");
+		eliminarc.innerHTML="Eliminar canciones"
+		eliminarc.classList.add("btn");
+		eliminarc.id="eliminarc";
 
-		opcion1.appendChild(mias);
-		opcion1.appendChild(añadir);
-		opcion1.appendChild(eliminar);
+		opcion1.appendChild(miasc);
+		opcion1.appendChild(añadirc);
+		opcion1.appendChild(eliminarc);
+
+		///////////////////////////////////////////////barra de opcion 2
+		let opcion2=document.createElement("div");
+		opcion2.classList.add("menu");
+		opcion2.id="opcion2";
+
+		let misplay=document.createElement("div");
+		misplay.innerHTML="Mis Playlist"
+		misplay.classList.add("btn");
+		misplay.id="misplay";
+
+		let crearp=document.createElement("div");
+		crearp.innerHTML="Crear Playlist"
+		crearp.classList.add("btn");
+		crearp.id="crearp";
+
+		let editarp=document.createElement("div");
+		editarp.innerHTML="Editar playlist"
+		editarp.classList.add("btn");
+		editarp.id="editarp";
+
+		let eliminarp=document.createElement("div");
+		eliminarp.innerHTML="Eliminar playlist"
+		eliminarp.classList.add("btn");
+		eliminarp.id="eliminarp";
+
+		
+		opcion2.appendChild(misplay);
+		opcion2.appendChild(crearp);
+		opcion2.appendChild(editarp);
+		opcion2.appendChild(eliminarp);
+
 
 		
 		///////////////////////////////////
@@ -205,6 +256,7 @@ class musicPlayer {
 		p2.appendChild(misCan);
 		p2.appendChild(opcion1);
 		p2.appendChild(misPlay);
+		p2.appendChild(opcion2);
 
 
 		///////////////////////////////////
