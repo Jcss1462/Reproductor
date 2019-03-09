@@ -78,6 +78,7 @@ function listaTotal(e){
 
 	fetch(`${servidor}selectSongs`, config)
 	.then(function (response) {
+		console.log(32);
 		return response.json();
 	})
 	//el return me menda un arreglo de canciones que luego paso como parametro
