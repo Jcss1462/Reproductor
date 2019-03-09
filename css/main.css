@@ -22,7 +22,7 @@ html, body {
 }
 
 .izquierda, .derecha {
-  width: 10%;
+  width: 15%;
   height: 100vh;
   background-color: #323332;
 }
