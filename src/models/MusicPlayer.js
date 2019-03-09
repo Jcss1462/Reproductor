@@ -1,8 +1,10 @@
 class musicPlayer {
-	constructor(songName,artistName,src) {
+	constructor(songName,artistName,src,servidor) {
 		this.player = new Audio(src);
 		this.initDOMElement(songName,artistName);
-	
+
+		
+
 		this.controlPanel = this.DOMElement.querySelector("#control-panel");
 		this.infoBar = this.DOMElement.querySelector("#info");
 		this.progressBar = this.infoBar.querySelector(".progress-bar");
@@ -16,10 +18,63 @@ class musicPlayer {
 		this.playBtn = this.DOMElement.querySelector("#play");
 		this.playBtn.onclick = () => { this.play() };
 
+		//////////////////////////////////////////////////
+
+		this.misC = this.DOMElement.querySelector("#misCan");
+		this.misC.onclick = (e) => {
+			this.infoUsuario(servidor);
+		}
+
+
 		this.player.ontimeupdate = () => { this.updateData() };
 
 	}
+	
 
+	infoUsuario(servidor){
+
+		var user = {
+			id: null,
+			email: null,
+			username: null,
+			playlist: [],
+			library: []
+		}
+
+		user.username = sessionStorage.getItem("username");	
+		var config={
+			method: 'get',
+			mode: 'cors',	
+		};
+		fetch(`${servidor}getMyInfo&username=${user.username}`, config)
+        .then(function (response) {
+            response.json().then(function (u) {
+				user = u;
+
+				let borrar = document.getElementById("mio");
+				console.log(borrar);
+				while (borrar.firstChild) {
+					borrar.removeChild(borrar.firstChild);
+				}
+
+				let barrainf = document.querySelector(".mio");
+				for (let i = 0; i < user.library.length; i++) {
+					let element = document.createElement("div");
+					element.classList.add("disco");
+					element.id="disco";
+					element.innerHTML = user.library[i].title;
+					element.dataset.id = user.library[i].title;
+					barrainf.insertBefore(element, barrainf.firstChild);
+				}
+	
+            })
+        });
+		
+		// Test
+	}
+
+	
+	
 	set DOMElement(value){
 		this._DOMElement = value;
 	}
@@ -65,6 +120,7 @@ class musicPlayer {
 
 
 		let mio = document.createElement("div");
+		mio.id="mio";
 		mio.classList.add("mio");
 		centro.appendChild(mio);
 
@@ -83,7 +139,12 @@ class musicPlayer {
 		this.DOMElement = cuerpo;
 	}
 
+	
+
 	_barraIzquierda(){
+		let barra=document.createElement("div");
+		barra.classList.add("barra");
+		/////////////////////////////////////
 
 		let p1=document.createElement("div");
 		p1.classList.add("p1")
@@ -92,10 +153,33 @@ class musicPlayer {
 		let username= document.createElement("div");
 		username.id="username"
 		
-
 		p1.appendChild(username);
 
-		return p1;
+		///////////////////////////////
+
+		let p2=document.createElement("div");
+		p2.classList.add("p2")
+
+		let misCan=document.createElement("div");
+		misCan.innerHTML="Mis canciones"
+		misCan.classList.add("item")
+		misCan.id="misCan";
+
+		let misPlay=document.createElement("div");
+		misPlay.innerHTML="Mis playlist"
+		misPlay.classList.add("item")
+		misPlay.id="misPlay";
+
+
+		p2.appendChild(misCan);
+		p2.appendChild(misPlay);
+
+
+		///////////////////////////////////
+		barra.appendChild(p1);
+		barra.appendChild(p2);
+
+		return barra;
 
 	}
 	_prevAndNextDomElement(isPrev, src){

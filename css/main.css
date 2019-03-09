@@ -24,8 +24,7 @@ html, body {
 .izquierda, .derecha {
   width: 10%;
   height: 100vh;
-  background-color: #66FF68;
-  display: inline-block
+  background-color: #323332;
 }
 
 .repro {
@@ -69,7 +68,7 @@ html, body {
 .musicPlayer {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 85.6%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +80,7 @@ html, body {
 .mio {
   position: relative;
   width: 100%;
-  height: 20vh;
+  height: 14.4%;
   display: flex;
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -338,18 +337,63 @@ html, body {
   height: 90px;
 }
 
-#username {
+.barra {
+  width: 100%;
+  height: 100%;
+}
+.barra .p1 {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  border-bottom: black 5px solid;
+}
+.barra .p1 #username {
+  top: 40%;
+  width: 100%;
+  height: 20%;
   position: relative;
-  top: 10%;
-  left: 3%;
   font-size: 150%;
   font-weight: bolder;
+  text-align: center;
   color: white;
   z-index: 99;
 }
-#username {
+.barra .p2 {
   width: 100%;
-  height: 10vh;
+  height: 70%;
+  display: inline-block;
+  background: #345564;
+}
+.barra .p2 .item {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  justify-content: center;
+  align-items: center;
+  background: #5b90a8;
+  border: #345564 2px solid;
+  color: white;
+}
+.barra .p2 .item:hover {
+  background-color: #345564;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+}
+
+.mio {
+  background: #323332;
+  overflow-y: auto;
+}
+.mio .disco {
+  display: flex;
+  margin: 2px;
+  min-width: 125px;
+  min-height: 90%;
+  border-radius: 360px;
+  background: beige;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=main.css.map */
