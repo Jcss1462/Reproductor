@@ -17,8 +17,32 @@ html, body {
 .as {
   width: 20%;
   height: 50%;
+  right: 40%;
+  top: 10%;
   position: absolute;
+  justify-content: center;
   background: #00abfa;
+  display: none;
+  z-index: 100;
+}
+.as .cerrar {
+  margin-top: 5%;
+  margin-left: 86%;
+  background: red;
+  width: 20px;
+  height: 20px;
+}
+.as .cerrar:hover {
+  background-color: #f15e5e;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+}
+.as #listaCanciones {
+  margin-top: 20px;
+  margin-left: 75px;
+  width: 50%;
+  height: 7%;
 }
 
 .centro {

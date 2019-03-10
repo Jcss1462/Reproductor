@@ -41,13 +41,60 @@ class musicPlayer {
 		
 		this.añadircan=this.DOMElement.querySelector("#añadirc");
 		this.añadircan.onclick = (e) => {
-			window.location = "./index.html";
+			this.abrirAgregarCanciones(servidor);
 		}
+
+		
 		//////////////////////////////////////////////////////
 
+		
 
 		this.player.ontimeupdate = () => { this.updateData() };
 
+	}
+	
+	abrirAgregarCanciones(servidor){
+		let ventana=document.getElementById("as");
+		ventana.style.display="inline-block";
+
+		let botoncerrar=this.DOMElement.querySelector(".cerrar");
+		botoncerrar.onclick = (e) => {
+			ventana.style.display="none";
+		}
+
+		var user = {
+			id: null,
+			email: null,
+			username: null,
+			playlist: [],
+			library: []
+		}
+
+		user.username = sessionStorage.getItem("username");	
+		var config={
+			method: 'get',
+			mode: 'cors',	
+		};
+		fetch(`${servidor}getMyInfo&username=${user.username}`, config)
+        .then(function (response) {
+            response.json().then(function (u) {
+				user = u;
+			
+				let select = document.querySelector("#listaCanciones");
+				if(select.length!=user.library.length){
+					//para cada elemto en el arreglo
+					user.library.forEach(key => {
+					let option = document.createElement("option");
+					option.value = key.id;
+					option.innerHTML = key.title;
+					select.appendChild(option);
+				});
+			}
+			
+            })
+        });
+	
+		console.log(48);	// Test
 	}
 
 	
@@ -80,6 +127,7 @@ class musicPlayer {
         .then(function (response) {
             response.json().then(function (u) {
 				user = u;
+				
 
 				let borrar = document.getElementById("mio");
 				console.log(borrar);
@@ -163,6 +211,19 @@ class musicPlayer {
 
 		let as=document.createElement("div");
 		as.classList.add("as");
+		as.id="as";
+
+
+		let cerrar=document.createElement("div");
+		cerrar.classList.add("cerrar");
+
+		let selector=document.createElement("select");
+		selector.name="listaCanciones";
+		selector.id="listaCanciones";
+
+
+		as.appendChild(cerrar);
+		as.appendChild(selector);
 
 
 		//////////////////////////////

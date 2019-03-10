@@ -18,8 +18,37 @@ html, body {
 .as{
   width: 20%;
   height: 50%;
+  right: 40%;
+  top:10%;
   position: absolute;
+  justify-content: center;
   background: rgb(0, 171, 250);
+  display: none;
+  z-index: 100;
+  .cerrar{
+
+    margin-top: 5%;
+    margin-left: 86%;
+    background: red;
+    width:20px;
+    height: 20px;
+
+  }
+  .cerrar:hover{
+    
+    background-color: rgb(241, 94, 94);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
+
+  }
+  
+  #listaCanciones{
+    margin-top:20px;
+    margin-left: 75px;
+    width:50%;
+    height: 7%;
+  }
 }
 
 .centro {
