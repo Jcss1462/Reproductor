@@ -28,14 +28,20 @@ class musicPlayer {
 		}
 
 		this.misp=this.DOMElement.querySelector("#misPlay");
-		this.misp.onclick = (a) => {
+		this.misp.onclick = (e) => {
 			this.playlis();
 		}
 
 		this.listacanciones=this.DOMElement.querySelector("#miscanciones");
-		this.listacanciones.onclick = (a) => {
+		this.listacanciones.onclick = (e) => {
 			console.log(servidor);
 			this.miscanciones(servidor);
+		}
+		
+		
+		this.añadircan=this.DOMElement.querySelector("#añadirc");
+		this.añadircan.onclick = (e) => {
+			window.location = "./index.html";
 		}
 		//////////////////////////////////////////////////////
 
@@ -153,7 +159,15 @@ class musicPlayer {
 		let derecha=document.createElement("div");
 		derecha.classList.add("derecha");
 
-		///////////////////////////////
+		///////////////////////////////ventanas flotante
+
+		let as=document.createElement("div");
+		as.classList.add("as");
+
+
+		//////////////////////////////
+
+		cuerpo.appendChild(as);
 		cuerpo.appendChild(izquierda);
 		cuerpo.appendChild(centro);
 		cuerpo.appendChild(derecha);
