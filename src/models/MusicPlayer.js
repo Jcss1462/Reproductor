@@ -5,8 +5,8 @@ class musicPlayer {
 
 		this.interruptor=this.DOMElement.querySelector("#opcion1");
 		this.interruptor2=this.DOMElement.querySelector("#opcion2");
+		this.interruptor3=this.DOMElement.querySelector("#listPlay");
 		
-
 		this.controlPanel = this.DOMElement.querySelector("#control-panel");
 		this.infoBar = this.DOMElement.querySelector("#info");
 		this.progressBar = this.infoBar.querySelector(".progress-bar");
@@ -61,6 +61,11 @@ class musicPlayer {
 		this.enviareliminacion.onclick = (e) => {
 			this.eliminarLibreria(servidor);
 		}
+
+		this.mostrarPlay=this.DOMElement.querySelector("#misplay");
+		this.mostrarPlay.onclick = (e) => {
+			this.showPlayList(servidor);
+		}
 		
 		//////////////////////////////////////////////////////
 
@@ -72,6 +77,49 @@ class musicPlayer {
 		
 
 	}
+
+	showPlayList(servidor){
+		
+		this.interruptor3.classList.toggle('active');
+		
+		var user = {
+			id: null,
+			email: null,
+			username: null,
+			playlist: [],
+			library: []
+		}
+
+		user.username = sessionStorage.getItem("username");	
+		var config={
+			method: 'get',
+			mode: 'cors',	
+		};
+		fetch(`${servidor}getMyInfo&username=${user.username}`, config)
+        .then(function (response) {
+            response.json().then(function (u) {
+				user = u;
+				
+				let borrar = document.getElementById("listPlay");
+				while (borrar.firstChild) {
+					borrar.removeChild(borrar.firstChild);
+				}
+				console.log(user.playlist);
+
+				let playsLIS = document.querySelector(".listPlay");
+				for (let i = 0; i < user.playlist.length; i++) {
+					let element = document.createElement("div");
+					element.classList.add("playL");
+					element.id="playL";
+					element.innerHTML = user.playlist[i].name;
+					element.dataset.id = user.playlist[i].id;
+					playsLIS.insertBefore(element, playsLIS.firstChild);
+				}
+	
+            })
+        });
+	}
+
 	
 	enviarLibreria(servidor){
 
@@ -194,9 +242,7 @@ class musicPlayer {
 	
 
 	canciones(){
-
 		this.interruptor.classList.toggle('active');
-	
 	}
 
 	miscanciones(servidor){
@@ -231,7 +277,7 @@ class musicPlayer {
 					element.classList.add("disco");
 					element.id="disco";
 					element.innerHTML = user.library[i].title;
-					element.dataset.id = user.library[i].title;
+					element.dataset.id = user.library[i].id;
 					barrainf.insertBefore(element, barrainf.firstChild);
 				}
 	
@@ -421,6 +467,10 @@ class musicPlayer {
 		misplay.classList.add("btn");
 		misplay.id="misplay";
 
+		let listPlay=document.createElement("div");
+		listPlay.classList.add("listPlay");
+		listPlay.id="listPlay";
+
 		let crearp=document.createElement("div");
 		crearp.innerHTML="Crear Playlist"
 		crearp.classList.add("btn");
@@ -438,6 +488,7 @@ class musicPlayer {
 
 		
 		opcion2.appendChild(misplay);
+		opcion2.appendChild(listPlay);
 		opcion2.appendChild(crearp);
 		opcion2.appendChild(editarp);
 		opcion2.appendChild(eliminarp);

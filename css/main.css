@@ -58,13 +58,13 @@ html, body {
   margin-top: 20px;
   margin-left: 80px;
   width: 50%;
-  height: 7%;
+  height: 10%;
 }
 .as #listaCancionesVe {
   margin-top: 20px;
   margin-left: 80px;
   width: 50%;
-  height: 7%;
+  height: 10%;
 }
 
 .centro {
@@ -414,11 +414,11 @@ html, body {
 .barra .p2 .menu .btn {
   display: flex;
   width: 100%;
-  height: 0%;
+  height: 0;
   margin-top: 5px;
   color: transparent;
   font-size: 0px;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 .barra .p2 .menu .btn:hover {
   background-color: #345564;
@@ -427,15 +427,41 @@ html, body {
   -webkit-transition: background-color 0.3s ease;
 }
 .barra .p2 .menu.active {
-  height: 20%;
+  height: 40%;
   transition: all 0.5s ease;
+  overflow-y: auto;
 }
 .barra .p2 .menu.active .btn {
   display: flex;
   width: 100%;
-  height: 15%;
+  height: 10%;
   color: black;
   font-size: 15px;
+}
+.barra .p2 .menu .listPlay {
+  width: 100%;
+  height: 0%;
+  background: white;
+  font-size: 0px;
+  transition: all 0.5s ease;
+}
+.barra .p2 .menu .listPlay.active {
+  height: 70%;
+  overflow-y: auto;
+  transition: all 0.5s ease;
+}
+.barra .p2 .menu .listPlay.active .playL {
+  margin-top: 10px;
+  width: 100%;
+  height: 20%;
+  color: black;
+  font-size: 15px;
+}
+.barra .p2 .menu .listPlay.active .playL:hover {
+  background-color: #a6a9aa;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
 }
 .barra .p2 .item {
   display: flex;
