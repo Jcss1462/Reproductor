@@ -17,7 +17,7 @@ html, body {
 
 .as{
   width: 20%;
-  height: 50%;
+  height: 30%;
   right: 40%;
   top:10%;
   position: absolute;
@@ -34,6 +34,25 @@ html, body {
     height: 20px;
 
   }
+  .enviar{
+    margin-top:10%;
+    margin-left: 37%;
+    width: 30%;
+    height: 10%;
+    background: #999;
+    align-items: center;
+    text-align-last: center;
+    justify-content: center;
+  }
+
+  .enviar:hover{
+    background-color: rgb(104, 102, 102);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
+  }
+
+
   .cerrar:hover{
     
     background-color: rgb(241, 94, 94);
@@ -45,10 +64,18 @@ html, body {
   
   #listaCanciones{
     margin-top:20px;
-    margin-left: 75px;
+    margin-left: 80px;
     width:50%;
     height: 7%;
   }
+
+  #listaCancionesVe{
+    margin-top:20px;
+    margin-left: 80px;
+    width:50%;
+    height: 7%;
+  }
+
 }
 
 .centro {

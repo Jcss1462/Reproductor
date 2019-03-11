@@ -44,6 +44,23 @@ class musicPlayer {
 			this.abrirAgregarCanciones(servidor);
 		}
 
+		this.enviarLi=this.DOMElement.querySelector("#enviarLibreria");
+		console.log(45);
+		this.enviarLi.onclick = (e) => {
+			this.enviarLibreria(servidor);
+		}
+
+		this.eliminarLi=this.DOMElement.querySelector("#eliminarc");
+		console.log(45);
+		this.eliminarLi.onclick = (e) => {
+			this.abrirEliminarCanciones(servidor);
+		}
+
+		this.enviareliminacion=this.DOMElement.querySelector("#eliminarLibrera");
+		console.log(45);
+		this.enviareliminacion.onclick = (e) => {
+			this.eliminarLibreria(servidor);
+		}
 		
 		//////////////////////////////////////////////////////
 
@@ -51,13 +68,41 @@ class musicPlayer {
 
 		this.player.ontimeupdate = () => { this.updateData() };
 
+
+		
+
 	}
+	
+	enviarLibreria(servidor){
+
+		console.log(45);
+
+		let selectorDeCanciones = document.querySelector("#listaCanciones");
+		let cancion = selectorDeCanciones.options[selectorDeCanciones.selectedIndex].value;
+		
+		
+
+	}
+
+	eliminarLibreria(servidor){
+
+		console.log(84);
+
+		let selectorDeCancionesEl = document.querySelector("#listaCancionesVe");
+		let cancion = selectorDeCancionesEl.options[selectorDeCancionesEl.selectedIndex].value;
+		
+		
+
+	}
+
+	
+	
 	
 	abrirAgregarCanciones(servidor){
 		let ventana=document.getElementById("as");
 		ventana.style.display="inline-block";
 
-		let botoncerrar=this.DOMElement.querySelector(".cerrar");
+		let botoncerrar=this.DOMElement.querySelector("#cerrarVa");
 		botoncerrar.onclick = (e) => {
 			ventana.style.display="none";
 		}
@@ -81,6 +126,51 @@ class musicPlayer {
 				user = u;
 			
 				let select = document.querySelector("#listaCanciones");
+				if(select.length!=user.library.length){
+					//para cada elemto en el arreglo
+					user.library.forEach(key => {
+					let option = document.createElement("option");
+					option.value = key.id;
+					option.innerHTML = key.title;
+					select.appendChild(option);
+				});
+			}
+			
+            })
+        });
+	
+		console.log(48);	// Test
+	}
+
+	abrirEliminarCanciones(servidor){
+		let ventanaCe=document.getElementById("es");
+		ventanaCe.style.display="inline-block";
+
+		let botoncerrarCe=this.DOMElement.querySelector("#cerrarVe");
+		botoncerrarCe.onclick = (e) => {
+			console.log(56);
+			ventanaCe.style.display="none";
+		}
+
+		var user = {
+			id: null,
+			email: null,
+			username: null,
+			playlist: [],
+			library: []
+		}
+
+		user.username = sessionStorage.getItem("username");	
+		var config={
+			method: 'get',
+			mode: 'cors',	
+		};
+		fetch(`${servidor}getMyInfo&username=${user.username}`, config)
+        .then(function (response) {
+            response.json().then(function (u) {
+				user = u;
+			
+				let select = document.querySelector("#listaCancionesVe");
 				if(select.length!=user.library.length){
 					//para cada elemto en el arreglo
 					user.library.forEach(key => {
@@ -207,7 +297,7 @@ class musicPlayer {
 		let derecha=document.createElement("div");
 		derecha.classList.add("derecha");
 
-		///////////////////////////////ventanas flotante
+		///////////////////////////////ventanas flotante de agregrar canciones
 
 		let as=document.createElement("div");
 		as.classList.add("as");
@@ -216,19 +306,54 @@ class musicPlayer {
 
 		let cerrar=document.createElement("div");
 		cerrar.classList.add("cerrar");
+		cerrar.id="cerrarVa";
 
 		let selector=document.createElement("select");
 		selector.name="listaCanciones";
 		selector.id="listaCanciones";
 
 
+		let enviar=document.createElement("div");
+		enviar.innerHTML="Enviar";
+		enviar.id="enviarLibreria";
+		enviar.classList.add("enviar");
+
+		
 		as.appendChild(cerrar);
 		as.appendChild(selector);
+		as.appendChild(enviar);
+
+		///////////////////////////////ventanas flotante de eliminar canciones
+
+		let es=document.createElement("div");
+		es.classList.add("as");
+		es.id="es";
+
+		let cerrarVe=document.createElement("div");
+		cerrarVe.classList.add("cerrar");
+		cerrarVe.id="cerrarVe";
+
+
+		let selectorVe=document.createElement("select");
+		selectorVe.name="listaCancionesVe";
+		selectorVe.id="listaCancionesVe";
+
+
+		let eliminarL=document.createElement("div");
+		eliminarL.innerHTML="Eliminar";
+		eliminarL.id="eliminarLibrera";
+		eliminarL.classList.add("enviar");
+
+
+		es.appendChild(cerrarVe);
+		es.appendChild(selectorVe);
+		es.appendChild(eliminarL);
 
 
 		//////////////////////////////
 
 		cuerpo.appendChild(as);
+		cuerpo.appendChild(es);
 		cuerpo.appendChild(izquierda);
 		cuerpo.appendChild(centro);
 		cuerpo.appendChild(derecha);
