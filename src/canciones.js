@@ -47,7 +47,7 @@ function doSignUp(e) {
 				
 				//alert('Añadido exitosamente');
 				document.getElementById("signUpForm").submit();
-				location.href='http://localhost/reproductor/MusicPlayer/canciones.html';
+				location.href='http://localhost/reproductorJC/MusicPlayer/canciones.html';
 				//clearField();
 
 				//redirectPlayer("#signUpForm");

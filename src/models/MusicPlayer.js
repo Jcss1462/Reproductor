@@ -67,6 +67,22 @@ class musicPlayer {
 			this.showPlayList(servidor);
 		}
 		
+		
+		///////////////////////////////////////////////////////////////////////////////////barra roja
+		this.ventanaAgregarCanciones=this.DOMElement.querySelector("#agregarCanciones");
+		this.ventanaAgregarCanciones.onclick = (e) => {
+			window.location = "./canciones.html";
+		}
+
+		this.ventanaAgregarArtistas=this.DOMElement.querySelector("#agregarArtistas");
+		this.ventanaAgregarArtistas.onclick = (e) => {
+			window.location = "./artistas.html";
+		}
+		this.ventanaAgregarAlbumes=this.DOMElement.querySelector("#agregarAlbumes");
+		this.ventanaAgregarAlbumes.onclick = (e) => {
+			window.location = "./albums.html";
+		}
+		
 		//////////////////////////////////////////////////////
 
 		
@@ -168,21 +184,22 @@ class musicPlayer {
 			method: 'get',
 			mode: 'cors',	
 		};
-		fetch(`${servidor}getMyInfo&username=${user.username}`, config)
+		fetch(`${servidor}nmc&username=${user.username}`, config)
         .then(function (response) {
             response.json().then(function (u) {
 				user = u;
 			
 				let select = document.querySelector("#listaCanciones");
-				if(select.length!=user.library.length){
+				console.log(select);
+			
 					//para cada elemto en el arreglo
-					user.library.forEach(key => {
+					user.forEach(key => {
 					let option = document.createElement("option");
 					option.value = key.id;
 					option.innerHTML = key.title;
 					select.appendChild(option);
 				});
-			}
+			
 			
             })
         });
@@ -342,6 +359,9 @@ class musicPlayer {
 
 		let derecha=document.createElement("div");
 		derecha.classList.add("derecha");
+
+		let Derinfo=this._barraDerecha();
+		derecha.appendChild(Derinfo);
 
 		///////////////////////////////ventanas flotante de agregrar canciones
 
@@ -517,6 +537,42 @@ class musicPlayer {
 		return barra;
 
 	}
+	/////////////////////////////////////////////////////////////////////////////
+	_barraDerecha(){
+		let barra=document.createElement("div");
+		barra.classList.add("barra");
+		/////////////////////////////////////
+
+		let agregarCanciones=document.createElement("div");
+		agregarCanciones.innerHTML="Agregar canciones"
+		agregarCanciones.classList.add("item")
+		agregarCanciones.id="agregarCanciones";
+
+
+		let agregarArtistas=document.createElement("div");
+		agregarArtistas.innerHTML="Agregar Artistas"
+		agregarArtistas.classList.add("item");
+		agregarArtistas.id="agregarArtistas";
+		
+		let agregarAlbumes=document.createElement("div");
+		agregarAlbumes.innerHTML="Agregar Albumes"
+		agregarAlbumes.classList.add("item");
+		agregarAlbumes.id="agregarAlbumes";
+		
+
+		///////////////////////////////////
+		barra.appendChild(agregarCanciones);
+		barra.appendChild(agregarArtistas);
+		barra.appendChild(agregarAlbumes);
+
+		return barra;
+
+	}
+	/////////////////////////////////////////////////////////////////////////////
+
+
+
+
 	_prevAndNextDomElement(isPrev, src){
 		let element = document.createElement("div");
 		element.id = (isPrev) ? "prevSong" : "nextSong";
