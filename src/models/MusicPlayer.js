@@ -136,15 +136,53 @@ class musicPlayer {
         });
 	}
 
-	
+	////////////////////////////////////////////seguir mañana
 	enviarLibreria(servidor){
 
-		console.log(45);
+		
 
 		let selectorDeCanciones = document.querySelector("#listaCanciones");
 		let cancion = selectorDeCanciones.options[selectorDeCanciones.selectedIndex].value;
 		
+		console.log(cancion);
+
+	
+
+		let data={
+			songs_id: cancion,
+			username: null
+		}
+		data.username = sessionStorage.getItem("username");	
+
+		var config={
+			method: 'POST',
+			mode: 'cors',
+			body: data	
+		};
 		
+		fetch(`${servidor}insterLibrary`, config)
+        .then(function (response) {
+            response.json().then(function (u) {
+				user = u;
+				
+				let borrar = document.getElementById("listPlay");
+				while (borrar.firstChild) {
+					borrar.removeChild(borrar.firstChild);
+				}
+				console.log(user.playlist);
+
+				let playsLIS = document.querySelector(".listPlay");
+				for (let i = 0; i < user.playlist.length; i++) {
+					let element = document.createElement("div");
+					element.classList.add("playL");
+					element.id="playL";
+					element.innerHTML = user.playlist[i].name;
+					element.dataset.id = user.playlist[i].id;
+					playsLIS.insertBefore(element, playsLIS.firstChild);
+				}
+	
+            })
+        });
 
 	}
 
@@ -190,8 +228,11 @@ class musicPlayer {
 				user = u;
 			
 				let select = document.querySelector("#listaCanciones");
-				console.log(select);
-			
+
+				
+					while(select.length!=0){
+						select.removeChild(0);
+					}
 					//para cada elemto en el arreglo
 					user.forEach(key => {
 					let option = document.createElement("option");

@@ -503,8 +503,10 @@ html, body {
 .mio .disco {
   display: flex;
   margin: 2px;
-  min-width: 125px;
-  min-height: 90%;
+  min-width: 14%;
+  max-width: 14%;
+  min-height: 80%;
+  max-height: 80%;
   border-radius: 360px;
   background: beige;
   justify-content: center;
