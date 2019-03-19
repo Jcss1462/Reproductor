@@ -1,21 +1,6 @@
 var isLodead= false;
 var elementosMultimedia= [];
 
-//UI interaction
-const loginBtn = document.getElementById('canciones');
-
-
-//const todas=document.getElementsById('boton');
-
-
-//const signupBtn = document.getElementById('signup');
-
-
-
-
-//Session handling
-//https://www.w3schools.com/html/html5_webstorage.asp
-
 
 // Requests
 
@@ -122,6 +107,7 @@ function postRequest(formSelector, url) {
 
 }
 
+
 let fileLoader = document.getElementById("fileLoader");
 fileLoader.onchange = function(e){
 	console.dir(this);
@@ -151,7 +137,25 @@ function subirContenido(e){
 
 	};
 
-	console.log(data);
+	var params = new FormData();
+	for (const key in data) {
+		params.append(key, data[key]);
+	}
+
+	var config = {
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+			'Access-Control-Allow-Origin': '*'
+		},
+		body: params
+	};
+
+	fetch(`${servidor}CreateSong`, config).then((r)=>{
+
+		alert(r);
+
+	});
 
 }
 
