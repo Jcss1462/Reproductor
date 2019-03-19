@@ -1,23 +1,29 @@
+var isLodead= false;
+var elementosMultimedia= [];
+
 //UI interaction
 const loginBtn = document.getElementById('canciones');
 
-var fielEmpty="";
+
 //const todas=document.getElementsById('boton');
 
-console.log(loginBtn);
+
 //const signupBtn = document.getElementById('signup');
 
-loginBtn.addEventListener('click', (e) => {
-	let parent = e.target.parentNode.parentNode;
-	Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-		if (element !== "slide-up") {
-			parent.classList.add('slide-up')
-		} else {
-			signupBtn.parentNode.classList.add('slide-up')
-			parent.classList.remove('slide-up')
-		}
-	});
-});
+
+
+let fileLoader = document.getElementById("fileLoader");
+fileLoader.onchange = function(e){
+	console.dir(this);
+	for (let i = 0; i < this.files.length; i++) {
+		let me = new MultimediaElement(this.files[i]);
+		me.loadFileContent().then((r)=>{
+			isLodead = true;
+			document.getElementById("ELBOTON").disabled = false;
+		});
+		elementosMultimedia[i] = me;
+	}
+}
 
 
 //Session handling
@@ -47,7 +53,7 @@ function doSignUp(e) {
 				
 				//alert('Añadido exitosamente');
 				document.getElementById("signUpForm").submit();
-				location.href='http://localhost/reproductorJC/MusicPlayer/canciones.html';
+				//location.href='http://localhost/reproductor/MusicPlayer/canciones.html';
 				//clearField();
 
 				//redirectPlayer("#signUpForm");
@@ -58,12 +64,6 @@ function doSignUp(e) {
 }
 
 
-function clearField(){   // Temporal
-	document.getElementById('title').value    = fielEmpty;
-	document.getElementById('duration').value = fielEmpty;
-	document.getElementById('format').value   = fielEmpty;
-	document.getElementById('file').value     = fielEmpty;
-}
 
 function listaTotal(e){
 	
@@ -135,12 +135,30 @@ function postRequest(formSelector, url) {
 
 }
 
-function redirectPlayer(formSelector) {
+function subirContenido(e){
+
+	e.preventDefault;
+	console.log(32)
+
+	
 
 	let form = document.querySelector(formSelector);
-	let username = form.querySelector("input[name='username']");
-	sessionStorage.setItem("username", username.value);
-	window.location = "./index.html";
-}
+	let inputs = form.querySelectorAll("input");
 
+	let data = {
+		id: null,
+		title:inputs[0].value,
+		duration: elementosMultimedia[0].DOMElement.duration,
+		fotmat: elementosMultimedia[0].file.type,
+		file: elementosMultimedia[0].data
+
+	};
+
+	console.log(data);
+
+	for (let i = 0; i < inputs.length; i++) {
+		data[inputs[i].name] = inputs[i].value;
+	}
+	
+}
 

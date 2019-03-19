@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Canciones</title>
+    <script src="src/models/MultimediaElement.js"></script>
    <!-- <link rel="stylesheet" href="css/login.css">-->
    <link rel="stylesheet" href="css/login.css">
    
@@ -15,15 +16,15 @@
     <div class="form-structor">
         <div class="signup">
             <h2 class="form-title" id="canciones">Canciones</h2>
-            <form id="signUpForm" onsubmit="doSignUp(event)">
+            onsubmit="doSignUp(event)"
+            <form id="signUpForm">
                 <div class="form-holder">
                     <input id="title" name="title" type="text" class="input" placeholder="Titulo" required />
                     <input id="duration" name="duration" type="text" class="input" placeholder="Duracion" required/>
                     <input id="format" name="format" type="text" class="input" placeholder="Formato" required/>
-                    <input id="file" name="file" type="file" class="input" placeholder="Archivo" required/>
+                    <input id="fileLoader" name="file" type="file" class="input" placeholder="Archivo" required/>
                 </div>
-                <button type="submit" class="submit-btn">Añadir</button>
-                
+                <button disabled id="ELBOTON"  onclick="subirContenido(event)" type="submit" class="submit-btn"  >Añadir</button>
             </form>
 
             <h2 class="form-title" id="boton"></h2>
