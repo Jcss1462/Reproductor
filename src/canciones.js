@@ -12,19 +12,6 @@ const loginBtn = document.getElementById('canciones');
 
 
 
-let fileLoader = document.getElementById("fileLoader");
-fileLoader.onchange = function(e){
-	console.dir(this);
-	for (let i = 0; i < this.files.length; i++) {
-		let me = new MultimediaElement(this.files[i]);
-		me.loadFileContent().then((r)=>{
-			isLodead = true;
-			document.getElementById("ELBOTON").disabled = false;
-		});
-		elementosMultimedia[i] = me;
-	}
-}
-
 
 //Session handling
 //https://www.w3schools.com/html/html5_webstorage.asp
@@ -135,16 +122,26 @@ function postRequest(formSelector, url) {
 
 }
 
+let fileLoader = document.getElementById("fileLoader");
+fileLoader.onchange = function(e){
+	console.dir(this);
+	for (let i = 0; i < this.files.length; i++) {
+		let me = new MultimediaElement(this.files[i]);
+		me.loadFileContent().then((r)=>{
+			isLodead = true;
+			document.getElementById("ELBOTON").disabled = false;
+		});
+		elementosMultimedia[i] = me;
+	}
+}
+
+
 function subirContenido(e){
 
-	e.preventDefault;
-	console.log(32)
+	e.preventDefault();
 
-	
-
-	let form = document.querySelector(formSelector);
+	let form = document.querySelector("#signUpForm");
 	let inputs = form.querySelectorAll("input");
-
 	let data = {
 		id: null,
 		title:inputs[0].value,
@@ -156,9 +153,5 @@ function subirContenido(e){
 
 	console.log(data);
 
-	for (let i = 0; i < inputs.length; i++) {
-		data[inputs[i].name] = inputs[i].value;
-	}
-	
 }
 
