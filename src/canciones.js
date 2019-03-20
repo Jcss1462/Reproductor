@@ -153,7 +153,9 @@ function subirContenido(e){
 
 	fetch(`${servidor}CreateSong`, config).then((r)=>{
 
-		alert(r);
+		r.text().then( (r)=> {
+			console.log(r)
+		})
 
 	});
 
